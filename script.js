@@ -66,8 +66,13 @@ goHomeBtn.onclick = () => {
 let questionCount = 0;
 let questionNumb = 1;
 let userScore = 0;
-let highestScore = localStorage.getItem("highest_score");
+let highestScore;
 
+if (localStorage.getItem("highest_score") !== null) {
+    highestScore = localStorage.getItem("highest_score");
+} else {
+    highestScore = 0;
+}
 highestScoreInfo.textContent = `Your highest Score is ${highestScore}`;
 
 const nextBtn = document.querySelector('.next-btn');
