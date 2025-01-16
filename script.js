@@ -8,6 +8,7 @@ const quizBox = document.querySelector('.quiz-box');
 const resultBox = document.querySelector('.result-box');
 const tryAgainBtn = document.querySelector('.tryAgain-btn');
 const goHomeBtn = document.querySelector('.goHome-btn');
+const highestScoreInfo = document.querySelector('.highest-score');
 
 
 
@@ -65,6 +66,9 @@ goHomeBtn.onclick = () => {
 let questionCount = 0;
 let questionNumb = 1;
 let userScore = 0;
+let highestScore = localStorage.getItem("highest_score");
+
+highestScoreInfo.textContent = `Your highest Score is ${highestScore}`;
 
 const nextBtn = document.querySelector('.next-btn');
 
@@ -146,6 +150,11 @@ function showResultBox() {
 
     const scoreText = document.querySelector('.score-text');
     scoreText.textContent = `Your Score ${userScore} out of ${questions.length}`;
+
+    if(userScore > highestScore) {
+        localStorage.setItem("highest_score", userScore);
+    }
+    highestScoreInfo.textContent = `Your highest Score is ${highestScore}`;
 
     const circularProgress = document.querySelector('.circular-progress');
     const progressValue = document.querySelector('.progress-value');
